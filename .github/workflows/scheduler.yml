@@ -36,10 +36,10 @@ jobs:
           SPONSORKIT_OPENCOLLECTIVE_SLUG: tabler
 
       - name: Commit
-        uses: EndBug/add-and-commit@v4
+        uses: EndBug/add-and-commit@v9
         with:
           message: "chore: update sponsors.svg"
-          default_author: author_name
-          add: "sponsors.png sponsors.svg"
+          author_name: GitHub Actions
+          add: "sponsors.*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
