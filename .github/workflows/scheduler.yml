@@ -1,0 +1,40 @@
+name: Scheduler
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches: [ master ]
+
+jobs:
+  update-sponsors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # install node
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.x
+
+      # install sponsorkit
+      - run: pnpm i
+
+      - name: Update sponsors
+        run: pnpm run build
+        env:
+          SPONSORKIT_GITHUB_TOKEN: ${{ secrets.SPONSORKIT_GITHUB_TOKEN }}
+          SPONSORKIT_GITHUB_LOGIN: codecalm
+          SPONSORKIT_OPENCOLLECTIVE_KEY: ${{ secrets.SPONSORKIT_OPENCOLLECTIVE_KEY }}
+          SPONSORKIT_OPENCOLLECTIVE_SLUG: tabler
+
+      - name: Commit
+        uses: EndBug/add-and-commit@v4
+        with:
+          message: "chore: update sponsors.svg"
+          default_author: github_actions
+          add: "sponsors.png sponsors.svg"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

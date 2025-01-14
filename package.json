@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "scripts": {
+    "build": "sponsorkit -w 800 --dir . --force"
+  },
+  "dependencies": {
+    "sponsorkit": "^0.16.2"
+  }
+}
