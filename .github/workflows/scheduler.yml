@@ -39,7 +39,7 @@ jobs:
         uses: EndBug/add-and-commit@v4
         with:
           message: "chore: update sponsors.svg"
-          default_author: github_actions
+          default_author: author_name
           add: "sponsors.png sponsors.svg"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
