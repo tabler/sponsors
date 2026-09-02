@@ -4,6 +4,6 @@
     "build": "sponsorkit -w 800 --dir . --force"
   },
   "dependencies": {
-    "sponsorkit": "^0.16.2"
+    "sponsorkit": "^18.0.0"
   }
 }
